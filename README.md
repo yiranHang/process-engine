@@ -126,12 +126,13 @@ const formConfig = convertArrowFunctionStrings(bb) as unknown as FormConfig
 
 
 ### BreakPoint 类型说明
-| 类型  | 说明 |
-| `xs`  | 超小屏幕设备 |
-| `sm`  | 小屏幕设备 |
-| `md`  | 中等屏幕设备 |
-| `lg`  | 大屏幕设备 |
-| `xl`  | 超大屏幕设备 |
+| 类型 | 说明         |
+| ---- | ------------ |
+| `xs` | 超小屏幕设备 |
+| `sm` | 小屏幕设备   |
+| `md` | 中等屏幕设备 |
+| `lg` | 大屏幕设备   |
+| `xl` | 超大屏幕设备 |
 
 
 ### 事件说明
