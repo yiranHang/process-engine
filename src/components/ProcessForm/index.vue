@@ -1,7 +1,15 @@
 <template>
   <div v-if="columns.length" class="card table-search">
+    <div class="form-header" v-if="formConfig.title">
+      <div class="form-title">
+        {{ formConfig.title }}
+      </div>
+      <div class="form-actions">
+        <slot name="actions"></slot>
+      </div>
+    </div>
     <el-form ref="formRef" :model="formData" v-bind="formConfig" label-width="100px">
-      <Grid ref="gridRef" :collapsed="collapsed" :gap="[20, 0]" :cols="formConfig?.formCol">
+      <Grid ref="gridRef" :gap="[20, 0]" :cols="formConfig?.formCol">
         <GridItem v-for="(item, index) in columns" :key="item.key" v-bind="getResponsive(item)" :index="index">
           <el-form-item>
             <template #label>
@@ -16,25 +24,15 @@
             <ProcessFormItem :column="item" :form-param="formData" />
           </el-form-item>
         </GridItem>
-        <GridItem suffix>
-          <div class="operation">
-            <el-button type="primary" :icon="Search" @click="submit"> {{  }} </el-button>
-            <el-button v-if="showCollapse" type="primary" link class="search-isOpen" @click="collapsed = !collapsed">
-              {{ collapsed ? '展开' : '合并' }}
-              <el-icon class="el-icon--right">
-                <component :is="collapsed ? ArrowDown : ArrowUp"></component>
-              </el-icon>
-            </el-button>
-          </div>
-        </GridItem>
       </Grid>
     </el-form>
+    <div class="operation">
+      <el-button type="primary" @click="submit"> {{ formConfig.submitText }} </el-button>
+    </div>
   </div>
 </template>
 <script setup lang="ts" name="ProcessForm">
-import { computed, ref } from 'vue'
-import { BreakPoint } from '@/components/Grid/interface'
-import { Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
+import { computed } from 'vue'
 import ProcessFormItem from './components/ProcessFormItem.vue'
 import Grid from '@/components/Grid/index.vue'
 import GridItem from '@/components/Grid/components/GridItem.vue'
@@ -44,15 +42,20 @@ interface ProFormProps {
   columns?: FormProps[] // 表单配置列
   formData?: { [key: string]: any } // 表单数据
   formConfig?: FormConfig // 表单配置
-  submit: (params: any) => void // 表单提交方法
 }
+
+const emits = defineEmits(['submit'])
 
 // 默认值
 const props = withDefaults(defineProps<ProFormProps>(), {
   columns: () => [],
   formData: () => ({}),
-  formConfig: () => ({ formCol: 2 } as FormConfig),
+  formConfig: () => ({ formCol: 2 }) as FormConfig
 })
+
+const columns = computed(() => props.columns)
+const formData = computed(() => props.formData)
+const formConfig = computed(() => props.formConfig)
 
 // 获取响应式设置
 const getResponsive = (item: FormProps) => {
@@ -67,27 +70,23 @@ const getResponsive = (item: FormProps) => {
   }
 }
 
-// 是否默认折叠搜索项
-const collapsed = ref(true)
-
-// 获取响应式断点
-const gridRef = ref()
-const breakPoint = computed<BreakPoint>(() => gridRef.value?.breakPoint)
-
-// 判断是否显示 展开/合并 按钮
-const showCollapse = computed(() => {
-  let show = false
-  props.columns.reduce((prev, current) => {
-    prev +=
-      (current![breakPoint.value]?.span ?? current?.span ?? 1) +
-      (current![breakPoint.value]?.offset ?? current?.offset ?? 0)
-    if (typeof props.formConfig?.formCol !== 'number') {
-      if (prev >= props.formConfig?.formCol[breakPoint.value]) show = true
-    } else {
-      if (prev >= props.formConfig?.formCol) show = true
-    }
-    return prev
-  }, 0)
-  return show
-})
+const submit = () => {
+  emits('submit', formData.value)
+}
 </script>
+
+<style lang="scss" scoped>
+.operation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+</style>

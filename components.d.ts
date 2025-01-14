@@ -7,6 +7,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElSpace: typeof import('element-plus/es')['ElSpace']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Grid: typeof import('./src/components/Grid/index.vue')['default']
     GridItem: typeof import('./src/components/Grid/components/GridItem.vue')['default']
     ProcessForm: typeof import('./src/components/ProcessForm/index.vue')['default']

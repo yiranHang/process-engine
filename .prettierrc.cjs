@@ -8,9 +8,9 @@ module.exports = {
   // 使用制表符而不是空格缩进行 (true：制表符，false：空格)
   useTabs: false,
   // 结尾不用分号 (true：有，false：没有)
-  semi: true,
+  semi: false,
   // 使用单引号 (true：单引号，false：双引号)
-  singleQuote: false,
+  singleQuote: true,
   // 在对象字面量中决定是否将属性名用引号括起来 可选值 "<as-needed|consistent|preserve>"
   quoteProps: "as-needed",
   // 在JSX中使用单引号而不是双引号 (true：单引号，false：双引号)
@@ -37,5 +37,5 @@ module.exports = {
   endOfLine: "auto",
   // 这两个选项可用于格式化以给定字符偏移量（分别包括和不包括）开始和结束的代码 (rangeStart：开始，rangeEnd：结束)
   rangeStart: 0,
-  rangeEnd: Infinity,
+  rangeEnd: Infinity
 };

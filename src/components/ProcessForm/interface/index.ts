@@ -11,8 +11,11 @@ export interface EnumProps {
   [key: string]: any
 }
 
-export interface FormConfig extends FormInstance{
+export interface FormConfig extends FormInstance {
   formCol: number | Record<BreakPoint, number>
+  title?: string
+  submitText?: string
+  submit: (params: any) => void
 }
 
 export type TypeProps = 'index' | 'selection' | 'radio' | 'expand' | 'sort'
@@ -30,7 +33,7 @@ export type FormType =
   | 'slider'
 
 export type FormRenderScope = {
-  FormParam: { [key: string]: any }
+  formParam: { [key: string]: any }
   placeholder: string
   clearable: boolean
   options: EnumProps[]
@@ -56,7 +59,3 @@ export type FieldNamesProps = {
   value: string
   children?: string
 }
-
-
-
-
