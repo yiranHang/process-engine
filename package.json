@@ -44,7 +44,7 @@
     "@vue/tsconfig": "^0.7.0",
     "cz-git": "^1.11.0",
     "czg": "^1.11.0",
-    "eslint": "^9.17.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.32.0",
