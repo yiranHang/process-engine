@@ -33,10 +33,10 @@
 </template>
 <script setup lang="ts" name="ProcessForm">
 import { computed } from 'vue'
-import ProcessFormItem from './components/ProcessFormItem.vue'
+import ProcessFormItem from '@/components/ProcessForm/components/ProcessFormItem.vue'
 import Grid from '@/components/Grid/index.vue'
 import GridItem from '@/components/Grid/components/GridItem.vue'
-import { FormConfig, FormProps } from './interface'
+import { FormConfig, FormProps } from '@/types'
 
 interface ProFormProps {
   columns?: FormProps[] // 表单配置列

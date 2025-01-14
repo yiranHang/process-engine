@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ProcessForm from '@/components/ProcessForm/index.vue'
-import { FormConfig, FormProps } from '@/components/ProcessForm/interface'
+import { FormConfig, FormProps } from '@/types'
 import { convertArrowFunctionStrings } from '@/utils'
 
 const aa = JSON.stringify([

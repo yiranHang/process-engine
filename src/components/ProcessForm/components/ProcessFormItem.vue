@@ -24,7 +24,7 @@
 
 <script setup lang="ts" name="ProcessFormItem">
 import { computed, inject, onMounted, ref } from 'vue'
-import { FormProps } from '../interface'
+import { FormProps } from '@/types'
 
 interface FormItem {
   column: FormProps
